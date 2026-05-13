@@ -4,10 +4,11 @@
   "description": "UNDERSTATE - Şehir ve Devlet Simülasyonu",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "node fix_game.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-react": "^7.23.0"
   }
 }
