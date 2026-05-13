@@ -1,0 +1,13 @@
+{
+  "name": "understate-game",
+  "version": "1.0.0",
+  "description": "UNDERSTATE - Şehir ve Devlet Simülasyonu",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node fix_game.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
