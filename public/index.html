@@ -26,8 +26,6 @@
         appId:             "1:1005888565298:android:30da582e4c434e9652cc2b"
       };
 
-      // WebView'da signInAnonymously yerine Firestore'u direkt kullan (auth bypass)
-      window._fbAuthBypass = true;
 
       const GAME_ID     = "understate_main_server";
       const REALTIME_KEYS = ["globalChat","cityChats","parliamentMsgs","supportMsgs","liveNews","announcements","activityFeed"];
@@ -61,8 +59,11 @@
       async function initFirebaseData() {
         try {
           // WebView'da anonymous auth sorun çıkarıyor — direkt Firestore'a bağlan
-          window._fbUid = "webview_" + Math.random().toString(36).substr(2, 9);
-          console.log("[Firebase] Firestore bağlanıyor...");
+          // Online çok oyunculu için anonim kimlik doğrulama
+          console.log("[Firebase] Anonim giriş yapılıyor...");
+          const userCred = await _auth.signInAnonymously();
+          window._fbUid = userCred.user.uid;
+          console.log("[Firebase] Giriş başarılı, Firestore bağlanıyor...");
 
           const gameRef  = _db.collection("games").doc(GAME_ID).collection("state").doc("main");
           const gameSnap = await gameRef.get();
